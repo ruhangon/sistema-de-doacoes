@@ -14,14 +14,12 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String estado;
 	private String cidade;
 	private String bairro;
 	private String rua;
 	private String numero;
 	private String complemento;
-
 
 	public Endereco() {
 	}
@@ -45,7 +43,6 @@ public class Endereco implements Serializable {
 		return result;
 	}
 
-	
 	public Integer getId() {
 		return id;
 	}
@@ -102,7 +99,6 @@ public class Endereco implements Serializable {
 		this.complemento = complemento;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -120,8 +116,5 @@ public class Endereco implements Serializable {
 		return true;
 	}
 
-	
-	
-	
-
 }
+

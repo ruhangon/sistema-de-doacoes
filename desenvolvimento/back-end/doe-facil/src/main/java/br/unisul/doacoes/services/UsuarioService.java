@@ -19,19 +19,19 @@ public class UsuarioService {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario.orElse(null);
 	}
+
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
 	}
+
 	public Usuario insert(Usuario usuario) {
 		usuario.setIdUsuario(null);
 		return usuarioRepository.save(usuario);
 	}
+
 	public Usuario update(Usuario usuario) {
 		findById(usuario.getIdUsuario());
 		return usuarioRepository.save(usuario);
 	}
-	public void deleteById(Integer id) {
-		usuarioRepository.deleteById(id);
-	}
-	
+
 }

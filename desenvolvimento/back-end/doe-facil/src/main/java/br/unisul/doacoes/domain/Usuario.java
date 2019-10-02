@@ -29,14 +29,11 @@ public class Usuario implements Serializable {
 //	private Blob imgUsuario;
 	private Integer votosPositivosUsuario;
 	private Integer votosNegativosUsuario;
-	
 
-	
-	
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
-	
+
 //	@OneToMany
 //	@JoinTable(name = "NOTIFICACAO",
 //		joinColumns = @JoinColumn(name = "idNotificacao"),
@@ -47,10 +44,10 @@ public class Usuario implements Serializable {
 //		joinColumns = @JoinColumn(name = "idDoacao"),
 //		inverseJoinColumns = @JoinColumn(name = "idUsuario")
 //	)
-	
+
 	public Usuario() {
-		
 	}
+
 	public Usuario(Integer idUsuario, String nomeCompleto, String nomeUsuario, String email, String senha,
 			LocalDate dataNasc, Byte idade, String cpf, Integer votosPositivosUsuario,
 			Integer votosNegativosUsuario,Endereco endereco) {
@@ -67,78 +64,104 @@ public class Usuario implements Serializable {
 		this.votosNegativosUsuario = votosNegativosUsuario;
 		this.endereco = endereco;
 	}
+
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
+
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
+
 	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
+
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
+
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
+
 	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
+
 	public Byte getIdade() {
 		return idade;
 	}
+
 	public void setIdade(Byte idade) {
 		this.idade = idade;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 //	public Blob getImgUsuario() {
 //		return imgUsuario;
 //	}
+
 //	public void setImgUsuario(Blob imgUsuario) {
 //		this.imgUsuario = imgUsuario;
 //	}
+
 	public Integer getVotosPositivosUsuario() {
 		return votosPositivosUsuario;
 	}
+
 	public void setVotosPositivosUsuario(Integer votosPositivosUsuario) {
 		this.votosPositivosUsuario = votosPositivosUsuario;
 	}
+
 	public Integer getVotosNegativosUsuario() {
 		return votosNegativosUsuario;
 	}
+
 	public void setVotosNegativosUsuario(Integer votosNegativosUsuario) {
 		this.votosNegativosUsuario = votosNegativosUsuario;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,6 +169,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -162,5 +186,5 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

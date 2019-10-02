@@ -18,34 +18,37 @@ import br.unisul.doacoes.dtos.UsuarioDTO;
 import br.unisul.doacoes.services.UsuarioService;
 
 @RestController
-@RequestMapping(value="/usuarios")
-public class UsuarioResources {
+@RequestMapping(value = "/usuarios")
+public class UsuarioResource {
 
-    @Autowired
-    private UsuarioService service;
+	@Autowired
+	private UsuarioService service;
 
-    @RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Usuario> find(@PathVariable Integer id){
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
 		Usuario obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void>insert(@RequestBody Usuario obj){
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Usuario obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
-				path("/{id}").buildAndExpand(obj.getIdUsuario()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdUsuario())
+				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id){
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id) {
 		obj.setIdUsuario(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UsuarioDTO>> findAll() {
 		List<Usuario> lista = service.findAll();
-		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList()); 
+		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
 

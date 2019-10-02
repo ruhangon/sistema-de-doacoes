@@ -17,22 +17,18 @@ import br.unisul.doacoes.domain.Endereco;
 import br.unisul.doacoes.dtos.EnderecoDTO;
 import br.unisul.doacoes.services.EnderecoService;
 
-
 @RestController
 @RequestMapping(value="/enderecos")
 public class EnderecoResource {
-
 	@Autowired
 	private EnderecoService service;
-	
-	
+
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<Endereco> find(@PathVariable Integer id){
 		Endereco obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void>insert(@RequestBody Endereco obj){
 		obj = service.insert(obj);
@@ -41,7 +37,6 @@ public class EnderecoResource {
 		return ResponseEntity.created(uri).build();
 	}
 
-	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Endereco obj, @PathVariable Integer id){
 		obj.setId(id);
@@ -49,15 +44,12 @@ public class EnderecoResource {
 		return ResponseEntity.noContent().build();
 	}
 
-
-	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<EnderecoDTO>> findAll() {
 		List<Endereco> lista = service.findAll();
 		List<EnderecoDTO> listaDTO = lista.stream().map(obj -> new EnderecoDTO(obj)).collect(Collectors.toList()); 
 		return ResponseEntity.ok().body(listaDTO);
 	}
-	
-	
+
 }
 
