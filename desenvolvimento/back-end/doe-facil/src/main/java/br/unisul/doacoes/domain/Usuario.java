@@ -2,15 +2,19 @@ package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.mysql.cj.jdbc.Blob;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable {
@@ -29,22 +33,24 @@ public class Usuario implements Serializable {
 //	private Blob imgUsuario;
 	private Integer votosPositivosUsuario;
 	private Integer votosNegativosUsuario;
-
+	
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
-//	@OneToMany
-//	@JoinTable(name = "NOTIFICACAO",
-//		joinColumns = @JoinColumn(name = "idNotificacao"),
-//		inverseJoinColumns = @JoinColumn(name = "idUsuario")
-//	)
-//	@OneToMany
-//	@JoinTable(name = "DOACAO",
-//		joinColumns = @JoinColumn(name = "idDoacao"),
-//		inverseJoinColumns = @JoinColumn(name = "idUsuario")
-//	)
-
+	@JsonIgnore
+	@OneToMany(mappedBy="usuario")
+	private List<Notificacao> notificacoes = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="doador")
+	private List<Doacao> feitas = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="recebedor")
+	private List<Doacao> recebidas = new ArrayList<>();
+	
+	
 	public Usuario() {
 	}
 
@@ -65,6 +71,32 @@ public class Usuario implements Serializable {
 		this.endereco = endereco;
 	}
 
+	
+	public List<Notificacao> getNotificacoes() {
+		return notificacoes;
+	}
+
+	public void setNotificacoes(List<Notificacao> notificacoes) {
+		this.notificacoes = notificacoes;
+	}
+
+
+
+	public List<Doacao> getFeitas() {
+		return feitas;
+	}
+
+	public void setFeitas(List<Doacao> feitas) {
+		this.feitas = feitas;
+	}
+
+	public List<Doacao> getRecebidas() {
+		return recebidas;
+	}
+
+	public void setRecebidas(List<Doacao> recebidas) {
+		this.recebidas = recebidas;
+	}
 
 	public Endereco getEndereco() {
 		return endereco;

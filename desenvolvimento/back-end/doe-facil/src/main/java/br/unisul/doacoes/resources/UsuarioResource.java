@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.unisul.doacoes.domain.Notificacao;
 import br.unisul.doacoes.domain.Usuario;
+import br.unisul.doacoes.dtos.NotificacaoDTO;
 import br.unisul.doacoes.dtos.UsuarioDTO;
+import br.unisul.doacoes.services.NotificacaoService;
 import br.unisul.doacoes.services.UsuarioService;
 
 @RestController
@@ -23,6 +26,8 @@ public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService service;
+	@Autowired
+	private NotificacaoService notificacaoService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
@@ -51,5 +56,13 @@ public class UsuarioResource {
 		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
+	//listar notificacoes de um usuario
+		@RequestMapping(value="/{usuarioId}/notificacoes", method=RequestMethod.GET)
+		public ResponseEntity<List<NotificacaoDTO>> findNotificacoes(@PathVariable Integer usuarioId) {
+			List<Notificacao> list = notificacaoService.findByUsuario(usuarioId);
+			List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());  
+			return ResponseEntity.ok().body(listDto);
+		}
+
 
 }
