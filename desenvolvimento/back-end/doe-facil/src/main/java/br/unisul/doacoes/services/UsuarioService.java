@@ -25,12 +25,12 @@ public class UsuarioService {
 	}
 
 	public Usuario insert(Usuario usuario) {
-		usuario.setIdUsuario(null);
+		usuario.setId(null);
 		return usuarioRepository.save(usuario);
 	}
 
 	public Usuario update(Usuario usuario) {
-		findById(usuario.getIdUsuario());
+		findById(usuario.getId());
 		return usuarioRepository.save(usuario);
 	}
 

@@ -12,27 +12,26 @@ import br.unisul.doacoes.repositories.EnderecoRepository;
 @Service
 public class EnderecoService {
 
-		@Autowired
-		private EnderecoRepository rep;
+	@Autowired
+	private EnderecoRepository rep;
 
-		public Endereco find (Integer id) {
-			Optional<Endereco> obj = rep.findById(id);
-			return obj.orElse(null);
-		}
+	public Endereco findById(Integer id) {
+		Optional<Endereco> obj = rep.findById(id);
+		return obj.orElse(null);
+	}
 
-		public Endereco insert (Endereco obj) {
-			obj.setId(null);
-			return rep.save(obj);
-		}
+	public Endereco insert(Endereco obj) {
+		obj.setId(null);
+		return rep.save(obj);
+	}
 
-		public Endereco update (Endereco obj) {
-			find(obj.getId());
-			return rep.save(obj);
-		}
+	public Endereco update(Endereco obj) {
+		findById(obj.getId());
+		return rep.save(obj);
+	}
 
-		public List<Endereco> findAll(){
-			return rep.findAll();
-		}
+	public List<Endereco> findAll() {
+		return rep.findAll();
+	}
 
 }
-

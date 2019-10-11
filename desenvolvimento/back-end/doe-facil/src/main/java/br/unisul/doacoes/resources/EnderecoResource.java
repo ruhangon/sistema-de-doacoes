@@ -18,38 +18,36 @@ import br.unisul.doacoes.dtos.EnderecoDTO;
 import br.unisul.doacoes.services.EnderecoService;
 
 @RestController
-@RequestMapping(value="/enderecos")
+@RequestMapping(value = "/enderecos")
 public class EnderecoResource {
 	@Autowired
 	private EnderecoService service;
 
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Endereco> find(@PathVariable Integer id){
-		Endereco obj = service.find(id);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Endereco> find(@PathVariable Integer id) {
+		Endereco obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void>insert(@RequestBody Endereco obj){
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Endereco obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
-				path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Endereco obj, @PathVariable Integer id){
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Endereco obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EnderecoDTO>> findAll() {
 		List<Endereco> lista = service.findAll();
-		List<EnderecoDTO> listaDTO = lista.stream().map(obj -> new EnderecoDTO(obj)).collect(Collectors.toList()); 
+		List<EnderecoDTO> listaDTO = lista.stream().map(obj -> new EnderecoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
 
 }
-

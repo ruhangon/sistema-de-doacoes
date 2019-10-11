@@ -24,7 +24,6 @@ public class EnderecoDTO implements Serializable {
 		this.rua = obj.getRua();
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
@@ -66,4 +65,3 @@ public class EnderecoDTO implements Serializable {
 	}
 
 }
-

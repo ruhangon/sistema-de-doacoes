@@ -11,13 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import br.unisul.doacoes.domain.Notificacao;
 
 @Repository
-public interface NotificacaoRepository extends JpaRepository<Notificacao, Integer>{
-	
-	@Transactional(readOnly=true)
-	@Query("SELECT obj FROM Notificacao obj WHERE obj.usuario.id = :usuarioId")
+public interface NotificacaoRepository extends JpaRepository<Notificacao, Integer> {
+
+	@Transactional(readOnly = true)
+	@Query("select obj from Notificacao obj where obj.usuario.id = :usuarioId")
 	public List<Notificacao> findNotificacoes(@Param("usuarioId") Integer usuario_id);
-	
-	
-	
 
 }

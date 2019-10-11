@@ -15,40 +15,22 @@ public class UsuarioDTO implements Serializable {
 	private String senha;
 	private LocalDate dataNasc;
 	private String cpf;
-	private Integer votosPositivosUsuario;
-	private Integer votosNegativosUsuario;
+	private Integer votosPositivos;
+	private Integer votosNegativos;
 
 	public UsuarioDTO() {
 	}
 
-	public UsuarioDTO(Usuario user) {
-		id = user.getIdUsuario();
-		nomeUsuario = user.getNomeUsuario();
-		nomeCompleto = user.getNomeCompleto();
-		email = user.getEmail();
-		senha = user.getSenha();
-		dataNasc =user.getDataNasc();
-		cpf = user.getCpf();
-		votosPositivosUsuario = user.getVotosPositivosUsuario();
-		votosNegativosUsuario = user.getVotosNegativosUsuario();
-	}
-
-
-	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public LocalDate getDataNasc() {
-		return dataNasc;
-	}
-
-	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
+	public UsuarioDTO(Usuario obj) {
+		this.id = obj.getId();
+		this.nomeUsuario = obj.getNomeUsuario();
+		this.nomeCompleto = obj.getNomeCompleto();
+		this.email = obj.getEmail();
+		this.senha = obj.getSenha();
+		this.dataNasc = obj.getDataNasc();
+		this.cpf = obj.getCpf();
+		this.votosPositivos = obj.getVotosPositivos();
+		this.votosNegativos = obj.getVotosNegativos();
 	}
 
 	public Integer getId() {
@@ -83,6 +65,22 @@ public class UsuarioDTO implements Serializable {
 		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public LocalDate getDataNasc() {
+		return dataNasc;
+	}
+
+	public void setDataNasc(LocalDate dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -91,20 +89,20 @@ public class UsuarioDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Integer getVotosPositivosUsuario() {
-		return votosPositivosUsuario;
+	public Integer getVotosPositivos() {
+		return votosPositivos;
 	}
 
-	public void setVotosPositivosUsuario(Integer votosPositivosUsuario) {
-		this.votosPositivosUsuario = votosPositivosUsuario;
+	public void setVotosPositivos(Integer votosPositivos) {
+		this.votosPositivos = votosPositivos;
 	}
 
-	public Integer getVotosNegativosUsuario() {
-		return votosNegativosUsuario;
+	public Integer getVotosNegativos() {
+		return votosNegativos;
 	}
 
-	public void setVotosNegativosUsuario(Integer votosNegativosUsuario) {
-		this.votosNegativosUsuario = votosNegativosUsuario;
+	public void setVotosNegativos(Integer votosNegativos) {
+		this.votosNegativos = votosNegativos;
 	}
 
 }

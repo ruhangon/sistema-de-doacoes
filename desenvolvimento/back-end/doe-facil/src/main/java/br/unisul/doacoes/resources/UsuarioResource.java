@@ -26,6 +26,7 @@ public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService service;
+
 	@Autowired
 	private NotificacaoService notificacaoService;
 
@@ -38,14 +39,14 @@ public class UsuarioResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Usuario obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdUsuario())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id) {
-		obj.setIdUsuario(id);
+		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
@@ -56,13 +57,13 @@ public class UsuarioResource {
 		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
-	//listar notificacoes de um usuario
-		@RequestMapping(value="/{usuarioId}/notificacoes", method=RequestMethod.GET)
-		public ResponseEntity<List<NotificacaoDTO>> findNotificacoes(@PathVariable Integer usuarioId) {
-			List<Notificacao> list = notificacaoService.findByUsuario(usuarioId);
-			List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());  
-			return ResponseEntity.ok().body(listDto);
-		}
 
+	// listar notificacoes de um usuario
+	@RequestMapping(value = "/{usuarioId}/notificacoes", method = RequestMethod.GET)
+	public ResponseEntity<List<NotificacaoDTO>> findNotificacoes(@PathVariable Integer usuarioId) {
+		List<Notificacao> list = notificacaoService.findByUsuario(usuarioId);
+		List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
 
 }

@@ -8,122 +8,144 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Doacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idDoacao;
-	private String nomeDoacao;
-	private ArrayList<String> imgDoacao;
-	private String statusDoacao;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nome;
+	private ArrayList<String> img;
+	private String status;
 	private String metodoFrete;
 	private String descricao;
-	private int votosPositivosDoacao;
-	private int votosNegativosDoacao;
+	private int votosPositivos;
+	private int votosNegativos;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
-	
-	@ManyToOne
-	@JoinColumn(name = "doador_id")
-	private Usuario doador;
-	
-	@ManyToOne
-	@JoinColumn(name = "recebedor_id")
-	private Usuario recebedor;
-	
-	
-	
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "doador_id") private Usuario doador;
+	 */
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "recebedor_id") private Usuario recebedor;
+	 */
+
+	// por enquanto também não há doador e recebedor no construtor com parâmetros
+
 	public Doacao() {
-		
 	}
-	public Doacao(Integer idDoacao, String nomeDoacao, ArrayList<String> imgDoacao, String statusDoacao,
-			String metodoFrete, String descricao, int votosPositivosDoacao, int votosNegativosDoacao,
-			LocalDate dataInicio, LocalDate dataFim, Usuario doador) {
+
+	public Doacao(Integer id, String nome, ArrayList<String> img, String status, String metodoFrete, String descricao,
+			int votosPositivos, int votosNegativos, LocalDate dataInicio, LocalDate dataFim) {
 		super();
-		this.idDoacao = idDoacao;
-		this.nomeDoacao = nomeDoacao;
-		this.imgDoacao = imgDoacao;
-		this.statusDoacao = statusDoacao;
+		this.id = id;
+		this.nome = nome;
+		this.img = img;
+		this.status = status;
 		this.metodoFrete = metodoFrete;
 		this.descricao = descricao;
-		this.votosPositivosDoacao = votosPositivosDoacao;
-		this.votosNegativosDoacao = votosNegativosDoacao;
+		this.votosPositivos = votosPositivos;
+		this.votosNegativos = votosNegativos;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
-		this.doador = doador;
 	}
-	public Integer getIdDoacao() {
-		return idDoacao;
+
+	public Integer getId() {
+		return id;
 	}
-	public void setIdDoacao(Integer idDoacao) {
-		this.idDoacao = idDoacao;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public String getNomeDoacao() {
-		return nomeDoacao;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeDoacao(String nomeDoacao) {
-		this.nomeDoacao = nomeDoacao;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public ArrayList<String> getImgDoacao() {
-		return imgDoacao;
+
+	public ArrayList<String> getImg() {
+		return img;
 	}
-	public void setImgDoacao(ArrayList<String> imgDoacao) {
-		this.imgDoacao = imgDoacao;
+
+	public void setImg(ArrayList<String> img) {
+		this.img = img;
 	}
-	public String getStatusDoacao() {
-		return statusDoacao;
+
+	public String getStatus() {
+		return status;
 	}
-	public void setStatusDoacao(String statusDoacao) {
-		this.statusDoacao = statusDoacao;
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
+
 	public String getMetodoFrete() {
 		return metodoFrete;
 	}
+
 	public void setMetodoFrete(String metodoFrete) {
 		this.metodoFrete = metodoFrete;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getVotosPositivosDoacao() {
-		return votosPositivosDoacao;
+
+	public int getVotosPositivos() {
+		return votosPositivos;
 	}
-	public void setVotosPositivosDoacao(int votosPositivosDoacao) {
-		this.votosPositivosDoacao = votosPositivosDoacao;
+
+	public void setVotosPositivos(int votosPositivos) {
+		this.votosPositivos = votosPositivos;
 	}
-	public int getVotosNegativosDoacao() {
-		return votosNegativosDoacao;
+
+	public int getVotosNegativos() {
+		return votosNegativos;
 	}
-	public void setVotosNegativosDoacao(int votosNegativosDoacao) {
-		this.votosNegativosDoacao = votosNegativosDoacao;
+
+	public void setVotosNegativos(int votosNegativos) {
+		this.votosNegativos = votosNegativos;
 	}
+
 	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
+
 	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
+
 	public LocalDate getDataFim() {
 		return dataFim;
 	}
+
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idDoacao == null) ? 0 : idDoacao.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -133,12 +155,12 @@ public class Doacao implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Doacao other = (Doacao) obj;
-		if (idDoacao == null) {
-			if (other.idDoacao != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!idDoacao.equals(other.idDoacao))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-	
+
 }

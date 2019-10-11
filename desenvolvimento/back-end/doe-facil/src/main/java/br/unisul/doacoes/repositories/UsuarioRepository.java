@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.unisul.doacoes.domain.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 }

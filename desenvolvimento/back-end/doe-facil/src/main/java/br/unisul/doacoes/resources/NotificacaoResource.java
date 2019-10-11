@@ -1,6 +1,5 @@
 package br.unisul.doacoes.resources;
 
-
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.unisul.doacoes.domain.Notificacao;
 import br.unisul.doacoes.dtos.NotificacaoDTO;
 import br.unisul.doacoes.services.NotificacaoService;
-
 
 @RestController
 @RequestMapping(value = "/notificacoes")
@@ -34,8 +32,7 @@ public class NotificacaoResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Notificacao obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -52,6 +49,5 @@ public class NotificacaoResource {
 		List<NotificacaoDTO> listaDTO = lista.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
-	
-	
+
 }
