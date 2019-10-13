@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
 	private LocalDate dataNasc;
 	private Byte idade;
 	private String cpf;
-//	private Blob img;
+	private String img;
 	private Integer votosPositivos;
 	private Integer votosNegativos;
 
@@ -41,25 +41,19 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario")
 	private List<Notificacao> notificacoes = new ArrayList<>();
 
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "doador") private List<Doacao> feitas = new
-	 * ArrayList<>();
-	 */
+	@JsonIgnore
+	@OneToMany(mappedBy = "doador")
+	private List<Doacao> feitas = new ArrayList<>();
 
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "recebedor") private List<Doacao> recebidas = new
-	 * ArrayList<>();
-	 */
+	@JsonIgnore
+	@OneToMany(mappedBy = "recebedor")
+	private List<Doacao> recebidas = new ArrayList<>();
 
 	public Usuario() {
 	}
 
 	public Usuario(Integer id, String nomeCompleto, String nomeUsuario, String email, String senha, LocalDate dataNasc,
-			Byte idade, String cpf, Integer votosPositivos, Integer votosNegativos, Endereco endereco) {
+			Byte idade, String cpf, String img, Integer votosPositivos, Integer votosNegativos, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
@@ -69,6 +63,7 @@ public class Usuario implements Serializable {
 		this.dataNasc = dataNasc;
 		this.idade = idade;
 		this.cpf = cpf;
+		this.img = img;
 		this.votosPositivos = votosPositivos;
 		this.votosNegativos = votosNegativos;
 		this.endereco = endereco;
@@ -168,6 +163,30 @@ public class Usuario implements Serializable {
 
 	public void setNotificacoes(List<Notificacao> notificacoes) {
 		this.notificacoes = notificacoes;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public List<Doacao> getFeitas() {
+		return feitas;
+	}
+
+	public void setFeitas(List<Doacao> feitas) {
+		this.feitas = feitas;
+	}
+
+	public List<Doacao> getRecebidas() {
+		return recebidas;
+	}
+
+	public void setRecebidas(List<Doacao> recebidas) {
+		this.recebidas = recebidas;
 	}
 
 	@Override

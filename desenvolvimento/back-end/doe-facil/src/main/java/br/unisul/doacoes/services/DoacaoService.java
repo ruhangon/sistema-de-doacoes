@@ -14,6 +14,14 @@ public class DoacaoService {
 	@Autowired
 	private DoacaoRepository rep;
 
+	public List<Doacao> findByDoador(Integer doadorId) {
+		return rep.findFeitas(doadorId);
+	}
+
+	public List<Doacao> findByRecebedor(Integer recebedorId) {
+		return rep.findRecebidas(recebedorId);
+	}
+
 	public Doacao findById(Integer id) {
 		Optional<Doacao> obj = rep.findById(id);
 		return obj.orElse(null);

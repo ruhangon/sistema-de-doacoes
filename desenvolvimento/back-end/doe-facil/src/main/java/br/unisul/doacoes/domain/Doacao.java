@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Doacao implements Serializable {
@@ -26,36 +28,32 @@ public class Doacao implements Serializable {
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "doador_id") private Usuario doador;
-	 */
+	@ManyToOne
+	@JoinColumn(name = "doador_id")
+	private Usuario doador;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "recebedor_id") private Usuario recebedor;
-	 */
+	@ManyToOne
+	@JoinColumn(name = "recebedor_id")
+	private Usuario recebedor;
 
 	// por enquanto também não há doador e recebedor no construtor com parâmetros
 
 	public Doacao() {
 	}
 
-	public Doacao(Integer id, String nome, ArrayList<String> img, String status, String metodoFrete, String descricao,
-			int votosPositivos, int votosNegativos, LocalDate dataInicio, LocalDate dataFim) {
+	public Doacao(Integer id, String nome, String status, String metodoFrete, String descricao, Integer votosPositivos,
+			Integer votosNegativos, LocalDate dataInicio, Usuario doador) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.img = img;
+		// this.img = img;
 		this.status = status;
 		this.metodoFrete = metodoFrete;
 		this.descricao = descricao;
 		this.votosPositivos = votosPositivos;
 		this.votosNegativos = votosNegativos;
 		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
+		this.doador = doador;
 	}
 
 	public Integer getId() {
@@ -136,6 +134,22 @@ public class Doacao implements Serializable {
 
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
+	}
+
+	public Usuario getDoador() {
+		return doador;
+	}
+
+	public void setDoador(Usuario doador) {
+		this.doador = doador;
+	}
+
+	public Usuario getRecebedor() {
+		return recebedor;
+	}
+
+	public void setRecebedor(Usuario recebedor) {
+		this.recebedor = recebedor;
 	}
 
 	@Override

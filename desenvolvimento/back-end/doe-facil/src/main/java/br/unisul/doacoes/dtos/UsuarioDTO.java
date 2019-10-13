@@ -15,6 +15,7 @@ public class UsuarioDTO implements Serializable {
 	private String senha;
 	private LocalDate dataNasc;
 	private String cpf;
+	private String img;
 	private Integer votosPositivos;
 	private Integer votosNegativos;
 
@@ -29,6 +30,7 @@ public class UsuarioDTO implements Serializable {
 		this.senha = obj.getSenha();
 		this.dataNasc = obj.getDataNasc();
 		this.cpf = obj.getCpf();
+		this.img = obj.getImg();
 		this.votosPositivos = obj.getVotosPositivos();
 		this.votosNegativos = obj.getVotosNegativos();
 	}
@@ -87,6 +89,14 @@ public class UsuarioDTO implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public Integer getVotosPositivos() {
