@@ -1,6 +1,7 @@
 package br.unisul.doacoes.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unisul.doacoes.domain.Doacao;
 import br.unisul.doacoes.dtos.DoacaoDTO;
+import br.unisul.doacoes.resources.utils.URL;
 import br.unisul.doacoes.services.DoacaoService;
 
 @RestController
@@ -53,6 +56,19 @@ public class DoacaoResource {
 	public ResponseEntity<List<DoacaoDTO>> findAll() {
 		List<Doacao> lista = service.findAll();
 		List<DoacaoDTO> listaDTO = lista.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDTO);
+	}
+
+	// Encontrar doações por trechos de nome
+	@RequestMapping(value = "/filtro", method = RequestMethod.GET)
+	public ResponseEntity<List<DoacaoDTO>> filtrarPorNome(
+			@RequestParam(value = "nome", defaultValue = "") String nome) {
+		List<DoacaoDTO> listaDTO = new ArrayList<DoacaoDTO>();
+		String nomeDecoded = URL.decodeParam(nome);
+		List<Doacao> lista = service.findByNome(nomeDecoded);
+		for (Doacao d : lista) {
+			listaDTO.add(new DoacaoDTO(d));
+		}
 		return ResponseEntity.ok().body(listaDTO);
 	}
 

@@ -2,7 +2,6 @@ package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,8 @@ public class Doacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private ArrayList<String> img;
+	private static final String[] categoria = new String[] { "eletrônico", "esporte", "ferramenta", "roupa", "saúde" };
+	private String[] img;
 	private String status;
 	private String metodoFrete;
 	private String descricao;
@@ -46,7 +46,6 @@ public class Doacao implements Serializable {
 		super();
 		this.id = id;
 		this.nome = nome;
-		// this.img = img;
 		this.status = status;
 		this.metodoFrete = metodoFrete;
 		this.descricao = descricao;
@@ -72,11 +71,15 @@ public class Doacao implements Serializable {
 		this.nome = nome;
 	}
 
-	public ArrayList<String> getImg() {
+	public static String[] getCategoria() {
+		return categoria;
+	}
+
+	public String[] getImg() {
 		return img;
 	}
 
-	public void setImg(ArrayList<String> img) {
+	public void setImg(String[] img) {
 		this.img = img;
 	}
 

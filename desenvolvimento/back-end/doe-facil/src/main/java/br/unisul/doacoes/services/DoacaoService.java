@@ -46,4 +46,8 @@ public class DoacaoService {
 		rep.deleteById(id.getId());
 	}
 
+	public List<Doacao> findByNome(String nome) {
+		return rep.findByDoacaoContaining(nome);
+	}
+
 }

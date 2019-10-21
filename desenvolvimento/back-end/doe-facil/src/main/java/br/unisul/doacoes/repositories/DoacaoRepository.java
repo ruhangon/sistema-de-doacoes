@@ -22,4 +22,8 @@ public interface DoacaoRepository extends JpaRepository<Doacao, Integer> {
 	@Query("SELECT obj FROM Doacao obj WHERE obj.recebedor.id = :recebedorId")
 	public List<Doacao> findRecebidas(@Param("recebedorId") Integer recebedor_id);
 
+	@Transactional(readOnly = true)
+	@Query("select d from Doacao d where d.nome like %:nome%")
+	List<Doacao> findByDoacaoContaining(@Param("nome") String nome);
+
 }

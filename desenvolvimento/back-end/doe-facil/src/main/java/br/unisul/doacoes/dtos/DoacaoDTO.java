@@ -2,7 +2,6 @@ package br.unisul.doacoes.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import br.unisul.doacoes.domain.Doacao;
 
@@ -11,7 +10,8 @@ public class DoacaoDTO implements Serializable {
 
 	private Integer id;
 	private String nome;
-	private ArrayList<String> img;
+	private static final String[] categoria = new String[] { "eletrônico", "esporte", "ferramenta", "roupa", "saúde" };
+	private String[] img;
 	private String status;
 	private String metodoFrete;
 	private String descricao;
@@ -26,14 +26,12 @@ public class DoacaoDTO implements Serializable {
 	public DoacaoDTO(Doacao obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
-		this.img = obj.getImg();
 		this.status = obj.getStatus();
 		this.metodoFrete = obj.getMetodoFrete();
 		this.descricao = obj.getDescricao();
 		this.votosPositivos = obj.getVotosPositivos();
 		this.votosNegativos = obj.getVotosNegativos();
 		this.dataInicio = obj.getDataInicio();
-		this.dataFim = obj.getDataFim();
 	}
 
 	public Integer getId() {
@@ -52,11 +50,15 @@ public class DoacaoDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public ArrayList<String> getImg() {
+	public static String[] getCategoria() {
+		return categoria;
+	}
+
+	public String[] getImg() {
 		return img;
 	}
 
-	public void setImg(ArrayList<String> img) {
+	public void setImg(String[] img) {
 		this.img = img;
 	}
 
