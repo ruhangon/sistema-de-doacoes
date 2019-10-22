@@ -1,16 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CadastroComponent } from './usuario/cadastro/cadastro.component';
 
 import { AppComponent } from './app.component';
 
+import {Routes, RouterModule} from '@angular/router';
+
+const rotas: Routes = [
+  {path: '', redirectTo:'cadastro', pathMatch:'full'},
+  {path: 'cadastro', component: CadastroComponent},
+];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CadastroComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(rotas)
   ],
-  providers: [],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
