@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ServicosService } from './servicos.service';
+import { Usuario } from './model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'doe-facil-front';
+  title = 'DOE-FÁCIL';
+
+  logado:Usuario
+
+  constructor(private service: ServicosService){}
+
+  login(){
+    this.service.buscarUsuarioPorCodigo(1).then((dados)=>{ this.logado=dados});
+  }
+
+
 }
