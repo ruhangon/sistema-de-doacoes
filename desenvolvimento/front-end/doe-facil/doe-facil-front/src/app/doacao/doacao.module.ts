@@ -15,8 +15,8 @@ import {PasswordModule} from 'primeng/password';
 import {DialogModule} from 'primeng/dialog';
 import { DoacaoCadastroComponent } from './doacao-cadastro/doacao-cadastro.component';
 import { MessageService } from 'primeng/api';
-import { doacaoService } from './doacaoService.service';
-import { ServicosService } from '../servicos.service';
+import { doacaoService } from './doacao.service';
+import { UsuarioService } from '../usuario/usuario.service';
 import { DoacaoDetalheComponent } from './doacao-detalhe/doacao-detalhe.component';
 
 
@@ -39,7 +39,7 @@ import { DoacaoDetalheComponent } from './doacao-detalhe/doacao-detalhe.componen
     DialogModule
   ],
   providers:  [
-    ServicosService,
+    UsuarioService,
     doacaoService,
     MessageService
   ],

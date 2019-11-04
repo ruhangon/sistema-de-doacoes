@@ -23,6 +23,7 @@ import { MeuPerfilComponent } from './usuario/meu-perfil/meu-perfil.component';
 
 
 const rotas: Routes = [
+  {path: '', component: DoacaoPesquisaComponent},
   {path: 'doacoes', component: DoacaoPesquisaComponent},
   {path: 'usuario/novo', component: UsuarioCadastroComponent},
   {path: 'usuario/meuperfil', component: MeuPerfilComponent},

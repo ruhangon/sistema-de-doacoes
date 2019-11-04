@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ServicosService } from 'src/app/servicos.service';
-import { Usuario } from 'src/app/model';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
+import { Usuario } from 'src/app/usuario/model';
 
 @Component({
   selector: 'app-meu-perfil',
@@ -13,7 +13,7 @@ export class MeuPerfilComponent implements OnInit {
    eu:Usuario=new Usuario();
 
 
-  constructor(private service:ServicosService,
+  constructor(private service:UsuarioService,
   private messageService: MessageService,) { }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
-import { doacaoService } from '../doacaoService.service';
-import { Doacao} from '../modelos';
+import { doacaoService } from '../doacao.service';
+import { Doacao} from '../model';
 import { Router } from '@angular/router';
 
 
@@ -16,11 +16,12 @@ export class DoacaoCadastroComponent implements OnInit {
 nova:Doacao=new Doacao();
 
 categorias=[
-  {label:'Vestimenta', value:'Vestimenta'},
-  {label:'Eletrônicos', value:'Eletrônicos'},
   {label:'Brinquedos', value:'Brinquedos'},
+  {label:'Eletrônicos', value:'Eletrônicos'},
+  {label:'Esportes', value:'Esportes'},
   {label:'Livros', value:'Livros'},
-  {label:'Ferramentas', value:'Ferramentas'},
+  {label:'Roupas', value:'Roupas'},
+  {label:'Saúde', value:'Saúde'},
   {label:'Outros', value:'Outros'},
 ];
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ServicosService } from './servicos.service';
-import { Usuario } from './model';
+import { UsuarioService } from './usuario/usuario.service';
+import { Usuario } from './usuario/model';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
 
   logado:Usuario
 
-  constructor(private service: ServicosService){}
+  constructor(private service: UsuarioService){}
 
   login(){
     this.service.buscarUsuarioPorCodigo(1).then((dados)=>{ this.logado=dados});

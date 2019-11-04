@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { doacaoService } from '../doacaoService.service';
-import { Doacao } from '../modelos';
+import { doacaoService } from '../doacao.service';
+import { Doacao } from '../model';
 import { SelectItem } from 'primeng/api';
 
 
