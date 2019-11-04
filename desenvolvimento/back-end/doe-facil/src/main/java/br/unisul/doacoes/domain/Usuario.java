@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 	private String nomeUsuario;
 	private String email;
 	private String senha;
-	private LocalDate dataNasc;
+	private String dataNasc;
 	private Byte idade;
 	private String cpf;
 	private String img;
@@ -52,8 +52,8 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nomeCompleto, String nomeUsuario, String email, String senha, LocalDate dataNasc,
-			Byte idade, String cpf, String img, Integer votosPositivos, Integer votosNegativos, Endereco endereco) {
+	public Usuario(Integer id, String nomeCompleto, String nomeUsuario, String email, String senha, String dataNasc,
+			String cpf, String img, Integer votosPositivos, Integer votosNegativos, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
@@ -61,7 +61,6 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.senha = senha;
 		this.dataNasc = dataNasc;
-		this.idade = idade;
 		this.cpf = cpf;
 		this.img = img;
 		this.votosPositivos = votosPositivos;
@@ -109,11 +108,11 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public LocalDate getDataNasc() {
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(LocalDate dataNasc) {
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 

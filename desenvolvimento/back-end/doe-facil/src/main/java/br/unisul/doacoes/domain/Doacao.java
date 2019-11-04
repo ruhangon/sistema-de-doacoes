@@ -18,7 +18,7 @@ public class Doacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private static final String[] categoria = new String[] { "eletrônico", "esporte", "ferramenta", "roupa", "saúde" };
+	private static final String[] categoria = new String[] { "brinquedos", "eletrônicos", "esportes", "livros", "roupas", "saúde", "outros" };
 	private String[] img;
 	private String status;
 	private String metodoFrete;

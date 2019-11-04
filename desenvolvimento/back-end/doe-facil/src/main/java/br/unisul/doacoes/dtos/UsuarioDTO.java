@@ -13,7 +13,7 @@ public class UsuarioDTO implements Serializable {
 	private String nomeCompleto;
 	private String email;
 	private String senha;
-	private LocalDate dataNasc;
+	private String dataNasc;
 	private String cpf;
 	private String img;
 	private Integer votosPositivos;
@@ -75,11 +75,11 @@ public class UsuarioDTO implements Serializable {
 		this.senha = senha;
 	}
 
-	public LocalDate getDataNasc() {
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(LocalDate dataNasc) {
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 

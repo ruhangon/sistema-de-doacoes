@@ -10,7 +10,7 @@ public class DoacaoDTO implements Serializable {
 
 	private Integer id;
 	private String nome;
-	private static final String[] categoria = new String[] { "eletrônico", "esporte", "ferramenta", "roupa", "saúde" };
+	private static final String[] categoria = new String[] { "brinquedos", "eletrônicos", "esportes", "livros", "roupas", "saúde", "outros" };
 	private String[] img;
 	private String status;
 	private String metodoFrete;

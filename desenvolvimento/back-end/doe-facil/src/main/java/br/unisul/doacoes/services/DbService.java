@@ -35,9 +35,9 @@ public class DbService {
 		Endereco e1 = new Endereco(1, "SC", "Tubarão", "Dehon", "Rua das Flores", "303", "Apartamento 101");
 		Endereco e2 = new Endereco(2, "SC", "Tubarão", "Dehon", "Rua das Flores", "205", "Apartamento 10");
 
-		Usuario usuario1 = new Usuario(1, "João Silva", "joaosilva", "joao@gmail.com", "joao123", null, (byte) 24,
+		Usuario usuario1 = new Usuario(1, "João Silva", "joaosilva", "joao@gmail.com", "joao123", "15/10/1992",
 				"06593254337", "c:/doefacil/imagens/perfil/joaosilva", 0, 0, e1);
-		Usuario usuario2 = new Usuario(2, "Marcos Dias", "marcosdias", "marcos@gmail.com", "marcos321", null, (byte) 25,
+		Usuario usuario2 = new Usuario(2, "Marcos Dias", "marcosdias", "marcos@gmail.com", "marcos321", "20/04/1990",
 				"03212345697", "c:/doefacil/imagens/perfil/marcosdias", 0, 0, e2);
 
 		Notificacao n1 = new Notificacao(1, "Há um interessado na sua Doaçao", false, usuario1);
