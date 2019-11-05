@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario} from 'src/app/usuario/model';
+import { Usuario} from './model';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class ServicosService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private messageService: MessageService,
+    private rotaprogramatica:Router) { }
 
   usuarioURL = 'http://localhost:8090/usuarios';
+  logado:Usuario;
+
 
 
   cadastrarUsuario(usuario: Usuario ): Promise<any>{
@@ -23,11 +29,6 @@ export class UsuarioService {
     .toPromise();
   }
 
-  buscarUsuarios(): Promise<any> {
-    return this.http.get<any>(this.usuarioURL).toPromise();
-  }
-
-
   buscarUsuarioPorCodigo(codigo: number): Promise<Usuario> {
     return this.http.get<Usuario>(this.usuarioURL+'/'+codigo).toPromise();
   }
@@ -38,6 +39,24 @@ export class UsuarioService {
 
   buscarDoacoesRecebidas(id:number):Promise<any>{
     return this.http.get<any>(this.usuarioURL+'/'+id+'/doacoesrecebidas').toPromise();
+  }
+
+  login(senha:string): Promise<Usuario> {
+    return this.http.get<Usuario>(this.usuarioURL+'/login/'+senha).toPromise();
+
+  }
+
+  autenticar(senha:string){
+      this.login(senha).then((dados)=>{ this.logado=dados});
+
+  }
+
+  deslogar(){
+    this.logado=null;
+  }
+
+   Usuariologado(){
+    return this.logado;
   }
 
 

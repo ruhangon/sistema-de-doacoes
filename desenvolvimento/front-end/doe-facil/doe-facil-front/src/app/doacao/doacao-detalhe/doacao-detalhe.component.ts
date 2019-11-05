@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { doacaoService } from '../doacao.service';
-import { Doacao } from '../model';
+import { doacaoService } from '../doacaoService.service';
+import { Doacao } from '../modelos';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class DoacaoDetalheComponent implements OnInit {
   }
 
   carregarDoacao(id:number){
-    this.service.buscarDoacaoPorCodigo(id)
+    this.service.buscarPorCodigo(id)
       .then((data) => {
         this.doacao = data;
       }

@@ -14,10 +14,13 @@ import { ToastModule } from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
 import {DialogModule} from 'primeng/dialog';
 import { DoacaoCadastroComponent } from './doacao-cadastro/doacao-cadastro.component';
-import { MessageService } from 'primeng/api';
-import { doacaoService } from './doacao.service';
-import { UsuarioService } from '../usuario/usuario.service';
+import { MessageService,  MenuItem } from 'primeng/api';
+import { doacaoService } from './doacaoService.service';
+import { ServicosService } from '../servicos.service';
 import { DoacaoDetalheComponent } from './doacao-detalhe/doacao-detalhe.component';
+import {MenuModule} from 'primeng/menu';
+
+
 
 
 @NgModule({
@@ -36,10 +39,13 @@ import { DoacaoDetalheComponent } from './doacao-detalhe/doacao-detalhe.componen
     DropdownModule,
     InputTextModule,
     PasswordModule,
-    DialogModule
+    DialogModule,
+    MenuModule,
+
+
   ],
   providers:  [
-    UsuarioService,
+    ServicosService,
     doacaoService,
     MessageService
   ],

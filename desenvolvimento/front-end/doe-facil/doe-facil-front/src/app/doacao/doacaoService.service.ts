@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Doacao } from './model';
+import { Doacao } from './modelos';
 
 
 @Injectable({
@@ -32,7 +32,7 @@ export class doacaoService {
     .toPromise();
   }
 
-  buscarDoacaoPorCodigo(codigo: number): Promise<Doacao> {
+  buscarPorCodigo(codigo: number): Promise<Doacao> {
     return this.http.get<Doacao>(this.doacaoURL+'/'+codigo).toPromise();
   }
 

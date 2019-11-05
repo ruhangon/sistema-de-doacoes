@@ -15,14 +15,16 @@ import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
 import {InputMaskModule} from 'primeng/inputmask';
 
+
 import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.component';
-import { UsuarioService } from '../usuario/usuario.service';
+import { ServicosService } from '../servicos.service';
 import { MessageService } from 'primeng/api';
 import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import { TableModule } from 'primeng/table';
+import { OutremPerfilComponent } from './outrem-perfil/outrem-perfil.component';
 
 @NgModule({
-  declarations: [UsuarioCadastroComponent, MeuPerfilComponent],
+  declarations: [UsuarioCadastroComponent, MeuPerfilComponent, OutremPerfilComponent],
   imports: [
     CommonModule,
     DataViewModule,
@@ -43,7 +45,7 @@ import { TableModule } from 'primeng/table';
     TableModule,
   ],
   providers: [
-    UsuarioService,
+    ServicosService,
     MessageService
   ],
   exports:[

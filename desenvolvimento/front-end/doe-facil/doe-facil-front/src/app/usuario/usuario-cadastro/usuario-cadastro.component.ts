@@ -1,8 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/usuario/usuario.service';
+import { ServicosService } from 'src/app/servicos.service';
 import { MessageService } from 'primeng/api';
-import { Usuario } from 'src/app/usuario/model';
+import { Usuario } from 'src/app/model';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -13,51 +13,50 @@ import { FormControl } from '@angular/forms';
 export class UsuarioCadastroComponent implements OnInit {
 
   usuario = new Usuario();
+  senha2:string;
+
+  uploadedFiles: any[] = [];
+
   estados=[
-    {label:'Acre', value:'Acre'},
-    {label:'Alagoas', value:'Alagoas'},
-    {label:'Amapá', value:'Amapá'},
-    {label:'Amazonas', value:'Amazonas'},
-    {label:'Bahia', value:'Bahia'},
-    {label:'Ceará', value:'Ceará'},
-    {label:'Distrito Federal', value:'Distrito Federal'},
-    {label:'Espírito Santo', value:'Espírito Santo'},
-    {label:'Goiás', value:'Goiás'},
-    {label:'Maranhão', value:'Maranhão'},
-    {label:'Mato Grosso', value:'Mato Grosso'},
-    {label:'Mato Grosso do Sul', value:'Mato Grosso do Sul'},
-    {label:'Minas Gerais', value:'Minas Gerais'},
-    {label:'Pará', value:'Pará'},
-    {label:'Paraíba', value:'Paraíba'},
-    {label:'Paraná', value:'Paraná'},
-        {label:'Pernambuco', value:'Pernambuco'},
-    {label:'Piauí', value:'Piauí'},
-    {label:'Rio de Janeiro', value:'Rio de Janeiro'},
-    {label:'Rio Grande do Norte', value:'Rio Grande do Norte'},
-    {label:'Rio Grande do Sul', value:'Rio Grande do Sul'},
-    {label:'Rondônia', value:'Rondônia'},
-    {label:'Roraima', value:'Roraima'},
     {label:'Santa Catarina', value:'Santa Catarina'},
     {label:'São Paulo', value:'São Paulo'},
+    {label:'Paraná', value:'Paraná'},
     {label:'Sergipe', value:'Sergipe'},
-    {label:'Tocantins', value:'Tocantins'},
   ];
 
   constructor(
-    private service:UsuarioService,
+    private service:ServicosService,
     private messageService: MessageService,
-    private rota: ActivatedRoute
+    private rotaprogramatica:Router
   ) { }
 
   ngOnInit() {
   }
 
   cadastrar(form: FormControl) {
+    if(this.usuario.senha==this.senha2){
 
-    this.service.cadastrarUsuario(this.usuario)
-      .then(() => {
+      this.service.cadastrarUsuario(this.usuario).then(() => {
         this.messageService.add({ severity: 'success', detail: 'Usuario ' + this.usuario.nomeCompleto + ' Cadastrado' });
-        form.reset();
+
       });
+      this.rotaprogramatica.navigate(['doacoes']);
+    }else{
+      this.messageService.add({ severity: 'error', detail: 'Senhas diferentes' });
+    }
+
+
   }
+
+ // onUpload(event) {
+//
+  //  <h3>Foto</h3>
+    //      <p-fileUpload mode="basic" name="demo[]" accept="image/*"
+      //     maxFileSize="1000000" (click)="onUpload($event)"></p-fileUpload>
+        //  </div>
+        //this.usuario.imgUsuario=event.file;
+
+    //this.messageService.add({severity: 'info', summary: 'Imagem Enviada', detail: ''});
+//}
+
 }
