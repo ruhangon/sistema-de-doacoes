@@ -32,26 +32,34 @@ public class UsuarioResource {
 
 	@Autowired
 	private NotificacaoService notificacaoService;
-
+	
 	@Autowired
 	private DoacaoService doacaoService;
-
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) {
 		Usuario obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	//LOGIN
+	@RequestMapping(value = "/login/{senha}", method = RequestMethod.GET)
+	public ResponseEntity<Usuario> login(@PathVariable String senha) {
+		Usuario obj = service.login(senha);
 		return ResponseEntity.ok().body(obj);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Usuario obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdUsuario())
+				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Usuario obj, @PathVariable Integer id) {
-		obj.setId(id);
+		obj.setIdUsuario(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
@@ -62,29 +70,31 @@ public class UsuarioResource {
 		List<UsuarioDTO> listaDTO = lista.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
-
-	// listar notificacoes de um usuario
-	@RequestMapping(value = "/{usuarioId}/notificacoes", method = RequestMethod.GET)
+	
+	//listar notificacoes de um usuario
+	@RequestMapping(value="/{usuarioId}/notificacoes", method=RequestMethod.GET)
 	public ResponseEntity<List<NotificacaoDTO>> findNotificacoes(@PathVariable Integer usuarioId) {
 		List<Notificacao> list = notificacaoService.findByUsuario(usuarioId);
-		List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());
+		List<NotificacaoDTO> listDto = list.stream().map(obj -> new NotificacaoDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
+	
+	//listar DOAÇOES FEITAS de um usuario
+		@RequestMapping(value="/{usuarioId}/doacoesfeitas", method=RequestMethod.GET)
+		public ResponseEntity<List<DoacaoDTO>> findFeitas(@PathVariable Integer usuarioId) {
+			List<Doacao> list = doacaoService.findByDoador(usuarioId);
+			List<DoacaoDTO> listDto = list.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());  
+			return ResponseEntity.ok().body(listDto);
+		}
+		
+		//listar DOAÇOES RECEBIDAS de um usuario
+		@RequestMapping(value="/{usuarioId}/doacoesrecebidas", method=RequestMethod.GET)
+		public ResponseEntity<List<DoacaoDTO>> findRecebidas(@PathVariable Integer usuarioId) {
+			List<Doacao> list = doacaoService.findByRecebedor(usuarioId);
+			List<DoacaoDTO> listDto = list.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());  
+			return ResponseEntity.ok().body(listDto);
+		}
+		
 
-	// listar DOAÇOES FEITAS de um usuario
-	@RequestMapping(value = "/{usuarioId}/doacoesfeitas", method = RequestMethod.GET)
-	public ResponseEntity<List<DoacaoDTO>> findFeitas(@PathVariable Integer usuarioId) {
-		List<Doacao> list = doacaoService.findByDoador(usuarioId);
-		List<DoacaoDTO> listDto = list.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
-	}
-
-	// listar DOAÇOES RECEBIDAS de um usuario
-	@RequestMapping(value = "/{usuarioId}/doacoesrecebidas", method = RequestMethod.GET)
-	public ResponseEntity<List<DoacaoDTO>> findRecebidas(@PathVariable Integer usuarioId) {
-		List<Doacao> list = doacaoService.findByRecebedor(usuarioId);
-		List<DoacaoDTO> listDto = list.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDto);
-	}
 
 }

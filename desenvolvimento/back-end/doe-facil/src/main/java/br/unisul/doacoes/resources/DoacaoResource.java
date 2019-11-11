@@ -58,18 +58,26 @@ public class DoacaoResource {
 		List<DoacaoDTO> listaDTO = lista.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
-
-	// Encontrar doações por trechos de nome
-	@RequestMapping(value = "/filtro", method = RequestMethod.GET)
-	public ResponseEntity<List<DoacaoDTO>> filtrarPorNome(
-			@RequestParam(value = "nome", defaultValue = "") String nome) {
-		List<DoacaoDTO> listaDTO = new ArrayList<DoacaoDTO>();
-		String nomeDecoded = URL.decodeParam(nome);
-		List<Doacao> lista = service.findByNome(nomeDecoded);
-		for (Doacao d : lista) {
-			listaDTO.add(new DoacaoDTO(d));
-		}
+	
+	//filtrar doacoes pela categoria
+	@RequestMapping(value = "/categoria/{categoria}", method = RequestMethod.GET)
+	public ResponseEntity<List<DoacaoDTO>> findByCategoria(@PathVariable String categoria) {
+		List<Doacao> lista = service.findByCategoria(categoria);
+		List<DoacaoDTO> listaDTO = lista.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}
+	
+	// Encontrar doações por trechos de nome
+		@RequestMapping(value = "/filtro", method = RequestMethod.GET)
+		public ResponseEntity<List<DoacaoDTO>> filtrarPorNome(@RequestParam(value = "nome", defaultValue = "") String nome) {
+			List<DoacaoDTO> listaDTO = new ArrayList<DoacaoDTO>();
+			String nomeDecoded = URL.decodeParam(nome);
+			List<Doacao> lista = service.findByNome(nomeDecoded);
+			for (Doacao d : lista) {
+				listaDTO.add(new DoacaoDTO(d));
+			}
+			return ResponseEntity.ok().body(listaDTO);
+		}
+
 
 }

@@ -1,19 +1,17 @@
 package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 public class Usuario implements Serializable {
@@ -21,59 +19,128 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idUsuario;
 	private String nomeCompleto;
 	private String nomeUsuario;
 	private String email;
 	private String senha;
 	private String dataNasc;
-	private Byte idade;
 	private String cpf;
-	private String img;
-	private Integer votosPositivos;
-	private Integer votosNegativos;
-
-	@OneToOne
-	@JoinColumn(name = "id_endereco")
-	private Endereco endereco;
+	
+    private Blob imgUsuario;
+	
+	private Integer votosPositivosUsuario=0;
+	private Integer votosNegativosUsuario=0;
+	
+	private String estado;
+	private String cidade;
+	private String bairro;
+	private String rua;
+	private String numero;
+	private String complemento;
+	
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy="notificado")
 	private List<Notificacao> notificacoes = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "doador")
-	private List<Doacao> feitas = new ArrayList<>();
 
+	@JsonIgnore 
+	@OneToMany(mappedBy = "doador") 
+	private List<Doacao> feitas = new ArrayList<>();
+	 
+
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "recebedor")
+	@OneToMany(mappedBy = "recebedor") 
 	private List<Doacao> recebidas = new ArrayList<>();
+	 
 
 	public Usuario() {
+		
 	}
-
-	public Usuario(Integer id, String nomeCompleto, String nomeUsuario, String email, String senha, String dataNasc,
-			String cpf, String img, Integer votosPositivos, Integer votosNegativos, Endereco endereco) {
+	
+	public Usuario(Integer idUsuario, String nomeCompleto, String nomeUsuario, String email, String senha,
+			String dataNasc, String estado, String cidade, String bairro, String rua, String numero,
+			String complemento) {
 		super();
-		this.id = id;
+		this.idUsuario = idUsuario;
 		this.nomeCompleto = nomeCompleto;
 		this.nomeUsuario = nomeUsuario;
 		this.email = email;
 		this.senha = senha;
 		this.dataNasc = dataNasc;
-		this.cpf = cpf;
-		this.img = img;
-		this.votosPositivos = votosPositivos;
-		this.votosNegativos = votosNegativos;
-		this.endereco = endereco;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
 	}
 
-	public Integer getId() {
-		return id;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+
+	public List<Notificacao> getNotificacoes() {
+		return notificacoes;
+	}
+
+	public void setNotificacoes(List<Notificacao> notificacoes) {
+	this.notificacoes = notificacoes;
+	}
+
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNomeCompleto() {
@@ -116,13 +183,6 @@ public class Usuario implements Serializable {
 		this.dataNasc = dataNasc;
 	}
 
-	public Byte getIdade() {
-		return idade;
-	}
-
-	public void setIdade(Byte idade) {
-		this.idade = idade;
-	}
 
 	public String getCpf() {
 		return cpf;
@@ -132,44 +192,28 @@ public class Usuario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Integer getVotosPositivos() {
-		return votosPositivos;
+	public Blob getImgUsuario() {
+		return imgUsuario;
 	}
 
-	public void setVotosPositivos(Integer votosPositivos) {
-		this.votosPositivos = votosPositivos;
+	public void setImgUsuario(Blob imgUsuario) {
+		this.imgUsuario = imgUsuario;
 	}
 
-	public Integer getVotosNegativos() {
-		return votosNegativos;
+	public Integer getVotosPositivosUsuario() {
+		return votosPositivosUsuario;
 	}
 
-	public void setVotosNegativos(Integer votosNegativos) {
-		this.votosNegativos = votosNegativos;
+	public void setVotosPositivosUsuario(Integer votosPositivosUsuario) {
+		this.votosPositivosUsuario = votosPositivosUsuario;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public Integer getVotosNegativosUsuario() {
+		return votosNegativosUsuario;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Notificacao> getNotificacoes() {
-		return notificacoes;
-	}
-
-	public void setNotificacoes(List<Notificacao> notificacoes) {
-		this.notificacoes = notificacoes;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
+	public void setVotosNegativosUsuario(Integer votosNegativosUsuario) {
+		this.votosNegativosUsuario = votosNegativosUsuario;
 	}
 
 	public List<Doacao> getFeitas() {
@@ -192,7 +236,7 @@ public class Usuario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
 		return result;
 	}
 
@@ -205,10 +249,10 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idUsuario == null) {
+			if (other.idUsuario != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idUsuario.equals(other.idUsuario))
 			return false;
 		return true;
 	}

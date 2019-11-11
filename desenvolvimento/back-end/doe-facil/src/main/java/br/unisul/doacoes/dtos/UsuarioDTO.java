@@ -1,7 +1,6 @@
 package br.unisul.doacoes.dtos;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import br.unisul.doacoes.domain.Usuario;
 
@@ -15,24 +14,55 @@ public class UsuarioDTO implements Serializable {
 	private String senha;
 	private String dataNasc;
 	private String cpf;
-	private String img;
-	private Integer votosPositivos;
-	private Integer votosNegativos;
+	private Integer votosPositivosUsuario;
+	private Integer votosNegativosUsuario;
+	
+	private String estado;
+	private String cidade;
+	private String bairro;
+	private String rua;
+	private String numero;
+	private String complemento;
 
 	public UsuarioDTO() {
 	}
 
-	public UsuarioDTO(Usuario obj) {
-		this.id = obj.getId();
-		this.nomeUsuario = obj.getNomeUsuario();
-		this.nomeCompleto = obj.getNomeCompleto();
-		this.email = obj.getEmail();
-		this.senha = obj.getSenha();
-		this.dataNasc = obj.getDataNasc();
-		this.cpf = obj.getCpf();
-		this.img = obj.getImg();
-		this.votosPositivos = obj.getVotosPositivos();
-		this.votosNegativos = obj.getVotosNegativos();
+	public UsuarioDTO(Usuario user) {
+		id = user.getIdUsuario();
+		nomeUsuario = user.getNomeUsuario();
+		nomeCompleto = user.getNomeCompleto();
+		email = user.getEmail();
+		senha = user.getSenha();
+		dataNasc =user.getDataNasc();
+		cpf = user.getCpf();
+		votosPositivosUsuario = user.getVotosPositivosUsuario();
+		votosNegativosUsuario = user.getVotosNegativosUsuario();
+		
+		estado=user.getEstado();
+		cidade=user.getCidade();
+		bairro=user.getBairro();
+		rua=user.getRua();
+		numero=user.getNumero();
+		complemento=user.getComplemento();
+		
+	}
+
+
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getDataNasc() {
+		return dataNasc;
+	}
+
+	public void setDataNasc(String dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 
 	public Integer getId() {
@@ -67,22 +97,6 @@ public class UsuarioDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getDataNasc() {
-		return dataNasc;
-	}
-
-	public void setDataNasc(String dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
@@ -91,28 +105,69 @@ public class UsuarioDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getImg() {
-		return img;
+	public Integer getVotosPositivosUsuario() {
+		return votosPositivosUsuario;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setVotosPositivosUsuario(Integer votosPositivosUsuario) {
+		this.votosPositivosUsuario = votosPositivosUsuario;
 	}
 
-	public Integer getVotosPositivos() {
-		return votosPositivos;
+	public Integer getVotosNegativosUsuario() {
+		return votosNegativosUsuario;
 	}
 
-	public void setVotosPositivos(Integer votosPositivos) {
-		this.votosPositivos = votosPositivos;
+	public void setVotosNegativosUsuario(Integer votosNegativosUsuario) {
+		this.votosNegativosUsuario = votosNegativosUsuario;
 	}
 
-	public Integer getVotosNegativos() {
-		return votosNegativos;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setVotosNegativos(Integer votosNegativos) {
-		this.votosNegativos = votosNegativos;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	
 }

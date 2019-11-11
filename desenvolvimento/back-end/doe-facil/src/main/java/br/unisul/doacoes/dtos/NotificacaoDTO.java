@@ -2,22 +2,30 @@ package br.unisul.doacoes.dtos;
 
 import java.io.Serializable;
 
+
 import br.unisul.doacoes.domain.Notificacao;
+
 
 public class NotificacaoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
 	private Integer id;
 	private String conteudo;
 	private boolean lida;
+	
+
 
 	public NotificacaoDTO() {
 	}
 
 	public NotificacaoDTO(Notificacao obj) {
+		
 		this.id = obj.getId();
 		this.conteudo = obj.getConteudo();
 		this.lida = obj.isLida();
+		
+		
 	}
 
 	public Integer getId() {
@@ -44,4 +52,8 @@ public class NotificacaoDTO implements Serializable {
 		this.lida = lida;
 	}
 
+	
+	
 }
+
+

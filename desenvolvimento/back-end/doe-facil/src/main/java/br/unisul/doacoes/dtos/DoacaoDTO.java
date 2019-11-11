@@ -4,21 +4,23 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import br.unisul.doacoes.domain.Doacao;
+import br.unisul.doacoes.domain.Usuario;
 
 public class DoacaoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
-	private static final String[] categoria = new String[] { "brinquedos", "eletrônicos", "esportes", "livros", "roupas", "saúde", "outros" };
-	private String[] img;
+	private String categoria;
+	private String img;
 	private String status;
 	private String metodoFrete;
 	private String descricao;
-	private int votosPositivos;
-	private int votosNegativos;
+	private Integer votosPositivos;
+	private Integer votosNegativos;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
+	private Usuario doador;
 
 	public DoacaoDTO() {
 	}
@@ -26,12 +28,25 @@ public class DoacaoDTO implements Serializable {
 	public DoacaoDTO(Doacao obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
+		this.categoria=obj.getCategoria();
+		this.img = obj.getImg();
 		this.status = obj.getStatus();
 		this.metodoFrete = obj.getMetodoFrete();
 		this.descricao = obj.getDescricao();
 		this.votosPositivos = obj.getVotosPositivos();
 		this.votosNegativos = obj.getVotosNegativos();
 		this.dataInicio = obj.getDataInicio();
+		this.dataFim = obj.getDataFim();
+		this.doador=obj.getDoador();
+		
+	}
+
+	public Usuario getDoador() {
+		return doador;
+	}
+
+	public void setDoador(Usuario doador) {
+		this.doador = doador;
 	}
 
 	public Integer getId() {
@@ -50,20 +65,24 @@ public class DoacaoDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public static String[] getCategoria() {
-		return categoria;
-	}
-
-	public String[] getImg() {
+	public String getImg() {
 		return img;
 	}
 
-	public void setImg(String[] img) {
+	public void setImg(String img) {
 		this.img = img;
 	}
 
 	public String getStatus() {
 		return status;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public void setStatus(String status) {
@@ -86,17 +105,11 @@ public class DoacaoDTO implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public int getVotosPositivos() {
-		return votosPositivos;
-	}
 
 	public void setVotosPositivos(int votosPositivos) {
 		this.votosPositivos = votosPositivos;
 	}
 
-	public int getVotosNegativos() {
-		return votosNegativos;
-	}
 
 	public void setVotosNegativos(int votosNegativos) {
 		this.votosNegativos = votosNegativos;
@@ -117,5 +130,23 @@ public class DoacaoDTO implements Serializable {
 	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
+
+	public Integer getVotosPositivos() {
+		return votosPositivos;
+	}
+
+	public void setVotosPositivos(Integer votosPositivos) {
+		this.votosPositivos = votosPositivos;
+	}
+
+	public Integer getVotosNegativos() {
+		return votosNegativos;
+	}
+
+	public void setVotosNegativos(Integer votosNegativos) {
+		this.votosNegativos = votosNegativos;
+	}
+	
+	
 
 }

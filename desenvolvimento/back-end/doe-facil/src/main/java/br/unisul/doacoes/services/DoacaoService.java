@@ -11,17 +11,29 @@ import br.unisul.doacoes.repositories.DoacaoRepository;
 
 @Service
 public class DoacaoService {
+
 	@Autowired
 	private DoacaoRepository rep;
+	
+	@Autowired
+	private UsuarioService service;
+	
+	public List<Doacao> findByNome(String nome) {
+		return rep.findByDoacaoContaining(nome);
+	}
 
+	public List<Doacao> findByCategoria(String cat) {
+		return rep.findByCategoria(cat);
+	}
+	
 	public List<Doacao> findByDoador(Integer doadorId) {
 		return rep.findFeitas(doadorId);
 	}
-
+	
 	public List<Doacao> findByRecebedor(Integer recebedorId) {
 		return rep.findRecebidas(recebedorId);
 	}
-
+	
 	public Doacao findById(Integer id) {
 		Optional<Doacao> obj = rep.findById(id);
 		return obj.orElse(null);
@@ -29,7 +41,9 @@ public class DoacaoService {
 
 	public Doacao insert(Doacao obj) {
 		obj.setId(null);
-		return rep.save(obj);
+		obj.setDoador(service.findById(obj.getDoador().getIdUsuario()));
+		rep.save(obj);
+		return obj;
 	}
 
 	public Doacao update(Doacao obj) {
@@ -44,10 +58,6 @@ public class DoacaoService {
 	public void delete(Doacao id) {
 		findById(id.getId());
 		rep.deleteById(id.getId());
-	}
-
-	public List<Doacao> findByNome(String nome) {
-		return rep.findByDoacaoContaining(nome);
 	}
 
 }

@@ -2,7 +2,6 @@ package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,42 +17,47 @@ public class Doacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private static final String[] categoria = new String[] { "brinquedos", "eletrônicos", "esportes", "livros", "roupas", "saúde", "outros" };
-	private String[] img;
+	private String categoria;
+	private String img;
 	private String status;
 	private String metodoFrete;
 	private String descricao;
-	private int votosPositivos;
-	private int votosNegativos;
+	
+	private Integer votosPositivos=0;
+	private Integer votosNegativos=0;
+	
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
 
-	@ManyToOne
-	@JoinColumn(name = "doador_id")
-	private Usuario doador;
+	
+	 @ManyToOne
+	 @JoinColumn(name = "doador_id") 
+	 private Usuario doador;
 
-	@ManyToOne
-	@JoinColumn(name = "recebedor_id")
-	private Usuario recebedor;
-
-	// por enquanto também não há doador e recebedor no construtor com parâmetros
+	 @ManyToOne 
+	 @JoinColumn(name = "recebedor_id") 
+	 private Usuario recebedor;
+	 
 
 	public Doacao() {
 	}
 
-	public Doacao(Integer id, String nome, String status, String metodoFrete, String descricao, Integer votosPositivos,
-			Integer votosNegativos, LocalDate dataInicio, Usuario doador) {
+	public Doacao(Integer id, String nome,String categoria,String img, String status, String metodoFrete, String descricao,
+			  LocalDate dataInicio, Usuario doador,Usuario recebedor) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.categoria=categoria;
+		this.img = img;
 		this.status = status;
 		this.metodoFrete = metodoFrete;
 		this.descricao = descricao;
-		this.votosPositivos = votosPositivos;
-		this.votosNegativos = votosNegativos;
+		
 		this.dataInicio = dataInicio;
 		this.doador = doador;
+		this.recebedor=recebedor;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -71,15 +75,11 @@ public class Doacao implements Serializable {
 		this.nome = nome;
 	}
 
-	public static String[] getCategoria() {
-		return categoria;
-	}
-
-	public String[] getImg() {
+	public String getImg() {
 		return img;
 	}
 
-	public void setImg(String[] img) {
+	public void setImg(String img) {
 		this.img = img;
 	}
 
@@ -107,17 +107,11 @@ public class Doacao implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public int getVotosPositivos() {
-		return votosPositivos;
-	}
 
 	public void setVotosPositivos(int votosPositivos) {
 		this.votosPositivos = votosPositivos;
 	}
 
-	public int getVotosNegativos() {
-		return votosNegativos;
-	}
 
 	public void setVotosNegativos(int votosNegativos) {
 		this.votosNegativos = votosNegativos;
@@ -139,6 +133,15 @@ public class Doacao implements Serializable {
 		this.dataFim = dataFim;
 	}
 
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
 	public Usuario getDoador() {
 		return doador;
 	}
@@ -153,6 +156,23 @@ public class Doacao implements Serializable {
 
 	public void setRecebedor(Usuario recebedor) {
 		this.recebedor = recebedor;
+	}
+
+	public void setVotosPositivos(Integer votosPositivos) {
+		this.votosPositivos = votosPositivos;
+	}
+
+	public void setVotosNegativos(Integer votosNegativos) {
+		this.votosNegativos = votosNegativos;
+	}
+
+	
+	public Integer getVotosPositivos() {
+		return votosPositivos;
+	}
+
+	public Integer getVotosNegativos() {
+		return votosNegativos;
 	}
 
 	@Override
