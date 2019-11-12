@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import br.unisul.doacoes.domain.Notificacao;
 import br.unisul.doacoes.dtos.NotificacaoDTO;
 import br.unisul.doacoes.services.NotificacaoService;
@@ -34,8 +35,7 @@ public class NotificacaoResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Notificacao obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -43,6 +43,12 @@ public class NotificacaoResource {
 	public ResponseEntity<Void> update(@RequestBody Notificacao obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Notificacao id) {
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 

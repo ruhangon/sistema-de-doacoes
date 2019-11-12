@@ -14,10 +14,20 @@ import br.unisul.doacoes.domain.Doacao;
 @Repository
 public interface DoacaoRepository extends JpaRepository<Doacao, Integer> {
 
+	//pegar todas as doaçoes DISPONÍVEIS
+	@Transactional(readOnly=true)
+	@Query("SELECT obj FROM Doacao obj WHERE obj.recebedor.id is null")
+	public List<Doacao> findDisponiveis();
+	
 	//pegar todas as doaçoes feitas de um usuario
 	@Transactional(readOnly=true)
 	@Query("SELECT obj FROM Doacao obj WHERE obj.doador.id = :doadorId")
 	public List<Doacao> findFeitas(@Param("doadorId") Integer doador_id);
+	
+	//pegar todas as doaçoes feitas e que estao disponívies de um usuario
+	@Transactional(readOnly=true)
+	@Query("SELECT obj FROM Doacao obj WHERE obj.doador.id = :doadorId AND obj.recebedor.id is null")
+	public List<Doacao> findFeitasDisponiveis(@Param("doadorId") Integer doador_id);
 	
 	//pegar todas as doaçoes recebidas de um usuario
 	@Transactional(readOnly=true)

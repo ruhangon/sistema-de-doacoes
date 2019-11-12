@@ -16,7 +16,6 @@ public class UsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	
-
 	public Usuario findById(Integer id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario.orElse(null);

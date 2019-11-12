@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 
 import br.unisul.doacoes.domain.Notificacao;
+import br.unisul.doacoes.domain.Usuario;
 
 
 public class NotificacaoDTO implements Serializable {
@@ -13,6 +14,8 @@ public class NotificacaoDTO implements Serializable {
 	private Integer id;
 	private String conteudo;
 	private boolean lida;
+	private Usuario notificador;
+	private Usuario notificado;
 	
 
 
@@ -24,6 +27,8 @@ public class NotificacaoDTO implements Serializable {
 		this.id = obj.getId();
 		this.conteudo = obj.getConteudo();
 		this.lida = obj.isLida();
+		this.notificador = obj.getNotificador();
+		this.notificado=obj.getNotificado();
 		
 		
 	}
@@ -50,6 +55,22 @@ public class NotificacaoDTO implements Serializable {
 
 	public void setLida(boolean lida) {
 		this.lida = lida;
+	}
+
+	public Usuario getNotificador() {
+		return notificador;
+	}
+
+	public void setNotificador(Usuario notificador) {
+		this.notificador = notificador;
+	}
+
+	public Usuario getNotificado() {
+		return notificado;
+	}
+
+	public void setNotificado(Usuario notificado) {
+		this.notificado = notificado;
 	}
 
 	

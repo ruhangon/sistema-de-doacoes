@@ -54,7 +54,7 @@ public class DoacaoResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<DoacaoDTO>> findAll() {
-		List<Doacao> lista = service.findAll();
+		List<Doacao> lista = service.findDisponiveis();
 		List<DoacaoDTO> listaDTO = lista.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDTO);
 	}

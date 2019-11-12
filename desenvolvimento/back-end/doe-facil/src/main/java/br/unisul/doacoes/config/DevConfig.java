@@ -9,14 +9,16 @@ import org.springframework.context.annotation.Configuration;
 
 import br.unisul.doacoes.services.DbService;
 
+
 @Configuration
 public class DevConfig {
+	
 	@Autowired
 	private DbService dbService;
-
+	
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
-
+	
 	@Bean
 	public boolean inicializaBancoDeDados() throws ParseException {
 		if (!strategy.equals("create")) {

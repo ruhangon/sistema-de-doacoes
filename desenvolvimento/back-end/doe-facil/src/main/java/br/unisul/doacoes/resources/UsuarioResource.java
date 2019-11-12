@@ -95,6 +95,14 @@ public class UsuarioResource {
 			return ResponseEntity.ok().body(listDto);
 		}
 		
+		//listar DOAÇOES FEITAS E QUE ESTÃO DISPONIVEIS de um usuario
+		@RequestMapping(value="/{usuarioId}/doacoesfeitasdisponiveis", method=RequestMethod.GET)
+		public ResponseEntity<List<DoacaoDTO>> findFeitasDisponiveis(@PathVariable Integer usuarioId) {
+			List<Doacao> list = doacaoService.findByDoadorDisponiveis(usuarioId);
+			List<DoacaoDTO> listDto = list.stream().map(obj -> new DoacaoDTO(obj)).collect(Collectors.toList());  
+			return ResponseEntity.ok().body(listDto);
+			}
+		
 
 
 }

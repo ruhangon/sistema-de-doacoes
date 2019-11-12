@@ -30,6 +30,10 @@ public class DoacaoService {
 		return rep.findFeitas(doadorId);
 	}
 	
+	public List<Doacao> findByDoadorDisponiveis(Integer doadorId) {
+		return rep.findFeitasDisponiveis(doadorId);
+	}
+	
 	public List<Doacao> findByRecebedor(Integer recebedorId) {
 		return rep.findRecebidas(recebedorId);
 	}
@@ -42,6 +46,7 @@ public class DoacaoService {
 	public Doacao insert(Doacao obj) {
 		obj.setId(null);
 		obj.setDoador(service.findById(obj.getDoador().getIdUsuario()));
+		obj.setRecebedor(null);
 		rep.save(obj);
 		return obj;
 	}
@@ -51,8 +56,8 @@ public class DoacaoService {
 		return rep.save(obj);
 	}
 
-	public List<Doacao> findAll() {
-		return rep.findAll();
+	public List<Doacao> findDisponiveis() {
+		return rep.findDisponiveis();
 	}
 
 	public void delete(Doacao id) {

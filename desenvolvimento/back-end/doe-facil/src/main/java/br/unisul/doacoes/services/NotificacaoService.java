@@ -41,6 +41,11 @@ public class NotificacaoService {
 			findById(obj.getId());
 			return rep.save(obj);
 		}
+		
+		public void delete(Notificacao obj) {
+			findById(obj.getId());
+			rep.deleteById(obj.getId());
+		}
 
 		
 		
