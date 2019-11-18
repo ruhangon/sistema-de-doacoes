@@ -1,4 +1,3 @@
-import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
@@ -22,6 +21,7 @@ import { ServicosService } from '../servicos.service';
 import { DoacaoDetalheComponent } from './doacao-detalhe/doacao-detalhe.component';
 import {MenuModule} from 'primeng/menu';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [DoacaoPesquisaComponent, DoacaoCadastroComponent, DoacaoDetalheComponent],
@@ -42,7 +42,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     DialogModule,
     MenuModule,
     TableModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   providers:  [
     ServicosService,

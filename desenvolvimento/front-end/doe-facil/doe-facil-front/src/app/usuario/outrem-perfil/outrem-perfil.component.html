@@ -53,7 +53,7 @@
       </div>
 
       <div class="ui-g-6">
-        <button pButton  (click)="digitar=true" label="Enviar Mensagem" icon="pi pi-bell" class=" boxButton"></button>
+        <button pButton  (click)="digitar=true" label="Enviar Mensagem" icon="pi pi-comment" class=" boxButton"></button>
       </div>
     </div>
 
@@ -63,7 +63,7 @@
   <p-dialog header="Selecione a Doação " [(visible)]="mostrar" [modal]="true" [responsive]="true" [style]="{width: '800px','text-align':'center'}"
   [maximizable]="true" [baseZIndex]="10000" >
     <p-confirmDialog header="Confirmação" icon="pi pi-question-circle" acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
-    <p-table [value]="doacoes" [paginator]="true" [rows]="5" [responsive]="true">
+    <p-table [value]="doacoes" [paginator]="true" [rows]="4" [responsive]="true">
       <ng-template pTemplate="header" >
         <tr>
           <th>Nome</th>
@@ -100,7 +100,7 @@
               </span>
 
               </h2>
-        <p-table [value]="outrem.feitas" [paginator]="true" [rows]="3" [responsive]="true" [autoLayout]="true">
+        <p-table [value]="outrem.feitas" [paginator]="true" [rows]="4" [responsive]="true" [autoLayout]="true">
           <ng-template pTemplate="header" >
             <tr>
               <th>Nome</th>
@@ -127,7 +127,7 @@
               </span>
 
               </h2>
-        <p-table [value]="outrem.recebidas" [paginator]="true" [rows]="3" [responsive]="true" [autoLayout]="true">
+        <p-table [value]="outrem.recebidas" [paginator]="true" [rows]="4" [responsive]="true" [autoLayout]="true">
           <ng-template pTemplate="header" >
             <tr>
               <th>Nome</th>

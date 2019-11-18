@@ -19,7 +19,6 @@ export class Doacao{
 export class Usuario{
     idUsuario:number;
     nomeCompleto:string;
-    imgUsuario:string;
     estado:string;
     cidade:string;
     bairro:string;

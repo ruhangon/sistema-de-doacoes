@@ -12,15 +12,19 @@
     </div>
   </div>
 
+  <ng-template #elseBlock >
+    <label class="warning" style="opacity: 0;">Insira</label>
+  </ng-template>
+
   <span>
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
       <div class="ui-g-12 ui-md-6">
 
         <div class="ui-md-6 ui-fluid">
-          <input pInputText type="text" name="nome" class="text-input text-input--underbar" placeholder="Nome da doação"
+          <input pInputText type="text" maxlength="22" name="nome" class="text-input text-input--underbar" placeholder="Nome da doação"
             [(ngModel)]="nova.nome" #nome="ngModel" required minlength="3">
-          <div *ngIf="nome.hasError('required') && nome.touched" class="warning">Informe o nome</div>
-          <div *ngIf="nome.hasError('minlength')" class="warning">O nome deve ter no mínimo 3 caractares</div>
+          <div *ngIf="nome.hasError('required') && nome.touched; else elseBlock" class="warning">Informe o nome</div>
+          <div *ngIf="nome.hasError('minlength'); else elseBlock" class="warning">O nome deve ter no mínimo 3 caractares</div>
         </div>
 
         <div>
@@ -40,30 +44,28 @@
       </div>
 
 
-      <div class="ui-g-6">
+      <div class="ui-g-4 ">
         <button pButton type="submit" label="{{editando?'Salvar edição': 'Salvar doação'}}"  icon="pi pi-check" [disabled]="f.invalid" ></button>
       </div>
 
-
-      <div class="ui-g-6">
-      <p-fileUpload mode="basic" name="imagem" url="../../../upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"></p-fileUpload>
-      </div>
-
-
-      <div class="ui-g-6" *ngIf="!editando">
+      <div class="ui-g-4 "  *ngIf="!editando">
           <button pButton type="button"  label="Cancelar" icon="pi pi-times" class="ui-button-danger"  [routerLink]="['/doacoes']" ></button>
         </div>
 
-      <div class="ui-g-6" *ngIf="editando">
+      <div class="ui-g-4 " *ngIf="editando">
         <button pButton type="button"  label="Cancelar Edição" icon="pi pi-times" class="ui-button-danger"  [routerLink]="['/doacoes/',nova.id]" ></button>
       </div>
+
+      <div class="ui-g-4">
+        <p-fileUpload chooseLabel="Imagem" mode="basic" name="demo[]" url="../../../assets/image/doacoes/" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"></p-fileUpload>
       </div>
+
+    </div>
+
     </form>
 
-
-
-    <div >
-      <img src="../../../assets/image/doacoes/{{nova.img}}.jpg" alt="img" width="400px" height="400px" style="margin: 30px 60px 0px 60px;">
+    <div style="text-align: center;" >
+      <img src="../../../assets/image/doacoes/{{nova.img}}.jpg" alt="imgage not found" width="400px" height="400px" style="margin: 30px 60px 0px 60px;">
     </div>
 
 

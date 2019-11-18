@@ -4,7 +4,7 @@ export class Usuario{
     idUsuario:number=0;
 	  nomeCompleto:string ;
     nomeUsuario:string;
-    imgUsuario:string = 'user';
+    imgUsuario:string = 'user'
     email:string;
     senha:string;
     dataNasc:string;

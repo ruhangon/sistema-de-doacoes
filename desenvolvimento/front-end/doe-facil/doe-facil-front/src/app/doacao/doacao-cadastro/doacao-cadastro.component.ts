@@ -19,7 +19,6 @@ export class DoacaoCadastroComponent implements OnInit {
 nova:Doacao=new Doacao();
 logado:Usuario;
 data = new Date();
-uploadedFiles: any[] = [];
 
 categorias=[
   {label:'Vestimenta', value:'Vestimenta'},
@@ -57,13 +56,9 @@ ngOnInit() {
   }
 
   onUpload(event) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-        this.nova.img=file.name;
-    }
+    this.nova.img=event.files.target.name;
 
-
-    this.messageService.add({severity: 'info', summary: 'Imagem Enviada', detail: ''});
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 
   cadastrar(form: FormControl) {
@@ -100,7 +95,7 @@ ngOnInit() {
       this.messageService.add({severity:'success', summary:'Edição', detail:'Doacão '+this.nova.nome+' alterada'});
       form.reset();
     }).then( ()=>{
-      this.rotaprogramatica.navigate(['/doacoes/',this.nova.id]);
+      this.rotaprogramatica.navigate(['/usuario/meuperfil']);
     })
 
   }

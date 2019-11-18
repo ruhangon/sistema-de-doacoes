@@ -57,7 +57,6 @@ export class OutremPerfilComponent implements OnInit {
   }
 
 
-
   mostrarDoacoes(){
     this.service.buscarDoacoesFeitasDisponiveis(this.service.logado.idUsuario).then((dados) => {this.doacoes=dados})
     .then(() => {this.mostrar = true});
