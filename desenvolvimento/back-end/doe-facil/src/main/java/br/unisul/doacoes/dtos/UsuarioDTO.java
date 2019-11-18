@@ -11,9 +11,9 @@ public class UsuarioDTO implements Serializable {
 	private String nomeUsuario;
 	private String nomeCompleto;
 	private String email;
-	private String senha;
-	private String dataNasc;
-	private String cpf;
+	
+	private String imgUsuario;
+	
 	private Integer votosPositivosUsuario;
 	private Integer votosNegativosUsuario;
 	
@@ -32,9 +32,9 @@ public class UsuarioDTO implements Serializable {
 		nomeUsuario = user.getNomeUsuario();
 		nomeCompleto = user.getNomeCompleto();
 		email = user.getEmail();
-		senha = user.getSenha();
-		dataNasc =user.getDataNasc();
-		cpf = user.getCpf();
+
+		imgUsuario=user.getImgUsuario();
+		
 		votosPositivosUsuario = user.getVotosPositivosUsuario();
 		votosNegativosUsuario = user.getVotosNegativosUsuario();
 		
@@ -49,20 +49,13 @@ public class UsuarioDTO implements Serializable {
 
 
 	
-	public String getSenha() {
-		return senha;
+
+	public String getImgUsuario() {
+		return imgUsuario;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getDataNasc() {
-		return dataNasc;
-	}
-
-	public void setDataNasc(String dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setImgUsuario(String imgUsuario) {
+		this.imgUsuario = imgUsuario;
 	}
 
 	public Integer getId() {
@@ -97,13 +90,6 @@ public class UsuarioDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 
 	public Integer getVotosPositivosUsuario() {
 		return votosPositivosUsuario;

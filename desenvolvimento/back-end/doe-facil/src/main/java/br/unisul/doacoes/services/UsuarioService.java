@@ -35,9 +35,10 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 
-	public Usuario login( String senha) {
-		Usuario usuario = usuarioRepository.login(senha);
+	
+	public Usuario login( String nomeUsuario, String senha) {
+		Usuario usuario = usuarioRepository.login(nomeUsuario,senha);
 		return usuario;
-	}
+		}	
 
 }

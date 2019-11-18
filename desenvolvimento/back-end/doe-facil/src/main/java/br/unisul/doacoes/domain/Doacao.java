@@ -1,7 +1,6 @@
 package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +25,8 @@ public class Doacao implements Serializable {
 	private Integer votosPositivos=0;
 	private Integer votosNegativos=0;
 	
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
+	private String dataInicio;
+	private String dataFim;
 
 	
 	 @ManyToOne
@@ -43,7 +42,7 @@ public class Doacao implements Serializable {
 	}
 
 	public Doacao(Integer id, String nome,String categoria,String img, String status, String metodoFrete, String descricao,
-			  LocalDate dataInicio, Usuario doador,Usuario recebedor) {
+			String dataInicio, Usuario doador,Usuario recebedor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -117,19 +116,19 @@ public class Doacao implements Serializable {
 		this.votosNegativos = votosNegativos;
 	}
 
-	public LocalDate getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(LocalDate dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public LocalDate getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(LocalDate dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 

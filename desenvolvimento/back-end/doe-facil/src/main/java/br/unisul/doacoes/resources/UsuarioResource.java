@@ -43,9 +43,9 @@ public class UsuarioResource {
 	}
 	
 	//LOGIN
-	@RequestMapping(value = "/login/{senha}", method = RequestMethod.GET)
-	public ResponseEntity<Usuario> login(@PathVariable String senha) {
-		Usuario obj = service.login(senha);
+	@RequestMapping(value = "/{nomeUsuario}/{senha}", method = RequestMethod.GET)
+	public ResponseEntity<Usuario> login(@PathVariable String nomeUsuario, @PathVariable String senha) {
+		Usuario obj = service.login(nomeUsuario,senha);
 		return ResponseEntity.ok().body(obj);
 	}
 

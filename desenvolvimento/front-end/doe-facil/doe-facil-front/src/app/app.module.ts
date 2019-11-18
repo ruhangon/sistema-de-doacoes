@@ -16,6 +16,9 @@ import {TableModule} from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {SidebarModule} from 'primeng/sidebar';
+import {ToolbarModule} from 'primeng/toolbar';
+import {PanelModule} from 'primeng/panel';
+//import { OnsenModule } from 'ngx-onsenui';
 
 
 import { DoacaoDetalheComponent } from './doacao/doacao-detalhe/doacao-detalhe.component';
@@ -57,6 +60,9 @@ const rotas: Routes = [
     SidebarModule,
     DoacaoModule,
     UsuarioModule,
+    ToolbarModule,
+    PanelModule,
+    //OnsenModule,
     ToastModule
 
 

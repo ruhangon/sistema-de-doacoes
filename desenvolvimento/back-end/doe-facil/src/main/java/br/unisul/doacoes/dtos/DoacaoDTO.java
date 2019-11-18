@@ -1,7 +1,6 @@
 package br.unisul.doacoes.dtos;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import br.unisul.doacoes.domain.Doacao;
 import br.unisul.doacoes.domain.Usuario;
@@ -18,11 +17,14 @@ public class DoacaoDTO implements Serializable {
 	private String descricao;
 	private Integer votosPositivos;
 	private Integer votosNegativos;
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
+	private String dataInicio;
+	private String dataFim;
 	private Usuario doador;
+	
+	
 
 	public DoacaoDTO() {
+		
 	}
 
 	public DoacaoDTO(Doacao obj) {
@@ -115,19 +117,19 @@ public class DoacaoDTO implements Serializable {
 		this.votosNegativos = votosNegativos;
 	}
 
-	public LocalDate getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(LocalDate dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public LocalDate getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(LocalDate dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 

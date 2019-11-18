@@ -14,3 +14,8 @@ label {
     margin: 0 auto;
   }
 }
+
+@font-face{
+  font-family: permanentMarker;
+  src: url('PermanentMarker-webfont.woff'), url('PermanentMarker-webfont.woff') format('woff');
+}

@@ -4,7 +4,7 @@ export class Doacao{
     id:number;
 	  nome:string;
     categoria:string;
-    img:String;
+    img:string='gift';
 	  status:string="Disponível";
 	  metodoFrete:string;
  	  descricao:string;
@@ -19,6 +19,7 @@ export class Doacao{
 export class Usuario{
     idUsuario:number;
     nomeCompleto:string;
+    imgUsuario:string;
     estado:string;
     cidade:string;
     bairro:string;

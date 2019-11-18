@@ -22,10 +22,12 @@ export class DoacaoPesquisaComponent implements OnInit{
   displayDialog: boolean = false;
   mostrarNotificacoes: boolean = false;
 
+  nomeUsuario:string;
   senha:string;
   logado:Usuario=null;
 
   items: MenuItem[];
+
 
   constructor(  private service: doacaoService,
     private messageService: MessageService,
@@ -48,7 +50,8 @@ export class DoacaoPesquisaComponent implements OnInit{
       label: this.logado.nomeCompleto,
       items: [
           {label: 'Meu Perfil', icon: 'pi pi-user' ,routerLink:"/usuario/meuperfil"},
-          {label: 'Notificações', icon: 'pi pi-bell', command: () => {this.abrirNotificacoes()} }
+          {label: 'Notificações', icon: 'pi pi-bell', command: () => {this.abrirNotificacoes()} },
+          {label: 'Sair', icon: 'pi pi-sign-out' , command: () => {this.logoff()}}
       ]
     }];
 
@@ -65,9 +68,12 @@ showDialog() {
 }
 
 login(){
-  this.service2.autenticar(this.senha);
-
+  this.service2.autenticar(this.nomeUsuario,this.senha);
   this.logado=this.service2.Usuariologado();
+}
+
+logoff(){
+  window.location.reload();
 }
 
 abrirNotificacoes(){
@@ -99,5 +105,3 @@ excluir(notificacao:Notificacao){
 
 
 }
-
-

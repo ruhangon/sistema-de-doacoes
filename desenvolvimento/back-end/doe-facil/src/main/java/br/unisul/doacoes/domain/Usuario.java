@@ -1,7 +1,6 @@
 package br.unisul.doacoes.domain;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -27,7 +26,7 @@ public class Usuario implements Serializable {
 	private String dataNasc;
 	private String cpf;
 	
-    private Blob imgUsuario;
+    private String imgUsuario;
 	
 	private Integer votosPositivosUsuario=0;
 	private Integer votosNegativosUsuario=0;
@@ -192,11 +191,11 @@ public class Usuario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Blob getImgUsuario() {
+	public String getImgUsuario() {
 		return imgUsuario;
 	}
 
-	public void setImgUsuario(Blob imgUsuario) {
+	public void setImgUsuario(String imgUsuario) {
 		this.imgUsuario = imgUsuario;
 	}
 

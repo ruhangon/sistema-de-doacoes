@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { FormControl } from '@angular/forms';
 import { doacaoService } from '../doacaoService.service';
 import { Doacao} from '../modelos';
@@ -18,6 +18,8 @@ export class DoacaoCadastroComponent implements OnInit {
 
 nova:Doacao=new Doacao();
 logado:Usuario;
+data = new Date();
+uploadedFiles: any[] = [];
 
 categorias=[
   {label:'Vestimenta', value:'Vestimenta'},
@@ -39,20 +41,39 @@ metodos=[
     private messageService: MessageService,
     private rotaprogramatica:Router,
     private rota: ActivatedRoute,
-    private service2:ServicosService) { }
+    private service2:ServicosService,
+    private conf: ConfirmationService,) { }
 
 ngOnInit() {
-    const codigoDoacao = this.rota.snapshot.params['id'];
-    if(codigoDoacao){this.carregarDoacao(codigoDoacao);}
 
+    if(this.service2.logado==null){
+    this.rotaprogramatica.navigate(['/doacoes'])
+    }else{
     this.logado = this.service2.Usuariologado();
+    const codigoDoacao = this.rota.snapshot.params['id'];
+    if(codigoDoacao){ this.carregarDoacao(codigoDoacao); }
+    }
 
   }
 
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+        this.nova.img=file.name;
+    }
+
+
+    this.messageService.add({severity: 'info', summary: 'Imagem Enviada', detail: ''});
+}
+
   cadastrar(form: FormControl) {
 
-    if(this.logado!=null){
-      this.nova.doador.idUsuario=this.logado.idUsuario;
+    this.nova.doador.idUsuario=this.logado.idUsuario;
+    this.nova.dataInicio=this.data.toLocaleDateString("pt-PT" ,{
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric"
+  })
 
     this.service.adicionarDoacao(this.nova)
       .then(() => {
@@ -60,24 +81,17 @@ ngOnInit() {
         form.reset();
       }).then( ()=>{
         this.rotaprogramatica.navigate(['/doacoes']);
-
-      });;
-
-    }else{
-      this.messageService.add({ severity: 'error', detail: 'Você precisa de uma conta para cadastrar uma doação' });
-    }
-
-
+      });
 
   }
 
 
   carregarDoacao(id:number){
-    this.service.buscarPorCodigo(id)
-      .then((data) => {
-        this.nova = data;
+    this.service.buscarPorCodigo(id).then((data) => { this.nova = data}).then(()=>{
+      if(this.nova.doador.idUsuario!=this.service2.logado.idUsuario){
+        this.rotaprogramatica.navigate(['/doacoes']);
       }
-    );
+    })
   }
 
   alterar(form: FormControl) {
@@ -85,8 +99,10 @@ ngOnInit() {
     .then( ()=>{
       this.messageService.add({severity:'success', summary:'Edição', detail:'Doacão '+this.nova.nome+' alterada'});
       form.reset();
-    });
-    this.rotaprogramatica.navigate(['/usuario/meuperfil']);
+    }).then( ()=>{
+      this.rotaprogramatica.navigate(['/doacoes/',this.nova.id]);
+    })
+
   }
 
   salvar(form: FormControl) {
@@ -96,6 +112,7 @@ ngOnInit() {
       this.cadastrar(form);
     }
   }
+
 
   get editando(){
     return Boolean(this.nova.id);

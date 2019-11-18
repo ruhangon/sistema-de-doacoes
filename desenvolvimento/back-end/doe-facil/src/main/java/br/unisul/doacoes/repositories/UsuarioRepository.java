@@ -11,8 +11,9 @@ import br.unisul.doacoes.domain.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
+	
 	@Transactional(readOnly=true)
-	@Query("SELECT obj FROM Usuario obj WHERE  obj.senha = :senha")
-	public Usuario login(@Param("senha") String senha);
+	@Query("SELECT obj FROM Usuario obj WHERE obj.nomeUsuario = :nomeUsuario and obj.senha = :senha ")
+	public Usuario login(@Param("nomeUsuario") String nomeUsuario ,@Param("senha") String senha);
 		
 }

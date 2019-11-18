@@ -71,7 +71,7 @@ export class UsuarioCadastroComponent implements OnInit {
       this.service.cadastrarUsuario(this.usuario).then(() => {
         this.messageService.add({ severity: 'success', detail: 'Usuario ' + this.usuario.nomeCompleto + ' Cadastrado' });
       }).then( ()=>{
-        this.service.autenticar(this.usuario.senha)})
+        this.service.autenticar(this.usuario.nomeUsuario,this.usuario.senha)})
 
     }else{
       this.messageService.add({ severity: 'error', detail: 'Senhas diferentes' });
@@ -107,37 +107,32 @@ export class UsuarioCadastroComponent implements OnInit {
     }
  }
 
-
-
-
-
-
-  salvar(form: FormControl) {
-    if(this.editando){
-      this.alterar(form);
-    }else{
-      this.cadastrar(form);
-    }
+ salvar(form: FormControl) {
+  if(this.editando){
+    this.alterar(form);
+  }else{
+    this.cadastrar(form);
   }
-
-  get editando(){
-    return Boolean(this.usuario.idUsuario);
-
-  }
-
-  mudarSenha() {
-    this.mudandoSenha = !this.mudandoSenha;
 }
 
- // onUpload(event) {
-//
-  //  <h3>Foto</h3>
-    //      <p-fileUpload mode="basic" name="demo[]" accept="image/*"
-      //     maxFileSize="1000000" (click)="onUpload($event)"></p-fileUpload>
-        //  </div>
-        //this.usuario.imgUsuario=event.file;
+get editando(){
+  return Boolean(this.usuario.idUsuario);
 
-    //this.messageService.add({severity: 'info', summary: 'Imagem Enviada', detail: ''});
+}
+
+mudarSenha() {
+  this.mudandoSenha = !this.mudandoSenha;
+}
+
+// onUpload(event) {
+//
+//  <h3>Foto</h3>
+  //      <p-fileUpload mode="basic" name="demo[]" accept="image/*"
+    //     maxFileSize="1000000" (click)="onUpload($event)"></p-fileUpload>
+      //  </div>
+      //this.usuario.imgUsuario=event.file;
+
+  //this.messageService.add({severity: 'info', summary: 'Imagem Enviada', detail: ''});
 //}
 
 }
