@@ -28,6 +28,15 @@ export class DoacaoPesquisaComponent implements OnInit{
 
   items: MenuItem[];
 
+  categorias=[
+    {label:'Vestimenta', value:'Vestimenta'},
+    {label:'Eletrônicos', value:'Eletrônicos'},
+    {label:'Brinquedos', value:'Brinquedos'},
+    {label:'Livros', value:'Livros'},
+    {label:'Ferramentas', value:'Ferramentas'},
+    {label:'Outros', value:'Outros'},
+  ];
+
 
   constructor(  private service: doacaoService,
     private messageService: MessageService,

@@ -20,7 +20,6 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {PanelModule} from 'primeng/panel';
 import {FileUploadModule} from 'primeng/fileupload';
 import { OnsenModule } from 'ngx-onsenui';
-import * as $ from 'jquery';
 
 import { DoacaoDetalheComponent } from './doacao/doacao-detalhe/doacao-detalhe.component';
 import { DoacaoCadastroComponent } from './doacao/doacao-cadastro/doacao-cadastro.component';
